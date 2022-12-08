@@ -1,12 +1,14 @@
 <template>
-  <div className="wrapper clear">
+  <div class="wrapper clear">
     <app-header />
-    <div className="content p-40">
-      <h1 className="mb-40">Все кроссовки</h1>
-      <div className="products" v-if="!isLoading">
+    <div class="content p-40">
+      <h1 class="mb-40">Все кроссовки</h1>
+      <div class="products" v-if="!isLoading">
         <app-list :items="sneakers"></app-list>
       </div>
-      <div v-else>Загрузка...</div>
+      <div class="products" v-else>
+        <is-loader v-for="n in 8" :key="n" />
+      </div>
     </div>
   </div>
 </template>
@@ -14,6 +16,8 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
 import AppList from "./components/AppList.vue";
+import isLoader from "./components/isLoader.vue";
+
 import axios from "axios";
 
 export default {
@@ -44,6 +48,7 @@ export default {
   components: {
     AppHeader,
     AppList,
+    isLoader,
   },
 };
 </script>

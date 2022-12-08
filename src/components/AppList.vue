@@ -1,13 +1,13 @@
 <template>
-  <div className="card" v-for="item in items" :key="item.id">
+  <div class="card" v-for="item in items" :key="item.id">
     <img width="133" height="112" :src="item.imageUrl" alt="Sneakers" />
     <h5>{{ item.title }}</h5>
-    <div className="d-flex justify-between align-center">
-      <div className="d-flex flex-column">
+    <div class="d-flex justify-between align-center">
+      <div class="d-flex flex-column">
         <span>Цена:</span>
         <b>{{ priceRu(item.price) }} руб.</b>
       </div>
-      <button className="button">
+      <button class="button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="12"
