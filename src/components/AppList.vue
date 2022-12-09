@@ -1,5 +1,15 @@
 <template>
   <div class="card" v-for="item in items" :key="item.id">
+    <div class="favorite">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+        <g fill="none" fill-rule="evenodd">
+          <path
+            stroke="#cfcfcf"
+            d="M12 7.5h.5c0-2.026 2.194-4 4.44-4 3.024 0 4.56 2.412 4.56 5.262C21.5 15.894 12 20.5 12 20.5S2.5 15.894 2.5 8.762C2.5 5.912 4.036 3.5 7.06 3.5c2.246 0 4.44 1.974 4.44 4h.5z"
+          />
+        </g>
+      </svg>
+    </div>
     <img width="133" height="112" :src="item.imageUrl" alt="Sneakers" />
     <h5>{{ item.title }}</h5>
     <div class="d-flex justify-between align-center">
@@ -46,6 +56,12 @@ export default {
   padding: 30px;
   width: 220px;
   border-radius: 40px;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 20px 35px #0000000f;
+    transform: translateY(-5px);
+  }
 
   span {
     font-size: 13px;
@@ -81,6 +97,19 @@ export default {
     svg {
       fill: #ffffff;
     }
+  }
+}
+
+.favorite {
+  position: absolute;
+  cursor: pointer;
+
+  & svg path {
+    transition: all 0.3s;
+  }
+
+  &:hover svg path {
+    stroke: #ff8585;
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper clear">
-    <app-header />
+    <app-header @showCart="showCart" />
+    <app-cart :show="this.show" />
     <div class="content p-40">
       <div class="d-flex align-center justify-between mb-20">
         <h1 class="mb-40">Все кроссовки</h1>
@@ -36,6 +37,7 @@
 import AppHeader from "./components/AppHeader.vue";
 import AppList from "./components/AppList.vue";
 import isLoader from "./components/isLoader.vue";
+import AppCart from "./components/AppCart.vue";
 // import AppSearch from "./components/AppSearch.vue";
 
 import axios from "axios";
@@ -43,8 +45,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      sneakers: [],
+      // sneakers: [],
       isLoading: false,
+      show: false,
       valueQuery: "",
     };
   },
@@ -66,6 +69,9 @@ export default {
     //   this.valueQuery = value;
     //   console.log(this.valueQuery);
     // },
+    showCart(closeCart) {
+      this.show = closeCart;
+    },
   },
   computed: {
     sortArr() {
@@ -73,15 +79,18 @@ export default {
         item.title.toLowerCase().includes(this.valueQuery)
       );
     },
+    allSneakers() {
+      return this.$store.getters.allSneakers;
+    },
   },
   created() {
     this.fetchSneakers();
-    console.log(this.sneakers);
   },
   components: {
     AppHeader,
     AppList,
     isLoader,
+    AppCart,
     // AppSearch,
   },
 };

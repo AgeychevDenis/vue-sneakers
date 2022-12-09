@@ -9,9 +9,15 @@
     </div>
     <ul className="d-flex">
       <li className="mr-30">
-        <img width="18" height="18" src="../assets/img/cart.svg" />
+        <img
+          width="18"
+          height="18"
+          @click="showCart"
+          src="../assets/img/cart.svg"
+        />
         <span>1205 руб.</span>
       </li>
+
       <li>
         <img width="18" height="18" src="../assets/img/user.svg" />
       </li>
@@ -20,7 +26,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    showCart() {
+      this.$store.state.show = true;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
