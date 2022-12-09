@@ -45,7 +45,7 @@
         <p class="opacity-6">
           Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
         </p>
-        <button class="greenButton">
+        <button class="greenButton" @click="closeCart">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
