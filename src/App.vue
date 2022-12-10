@@ -1,11 +1,23 @@
 <template>
   <div class="wrapper clear">
-    <router-view></router-view>
+    <app-header />
+    <app-cart />
+    <div class="content p-40">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import AppHeader from "@/components/AppHeader.vue";
+import AppCart from "@/components/AppCart.vue";
+
+export default {
+  components: {
+    AppHeader,
+    AppCart,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -38,6 +50,7 @@ header {
 }
 
 .content {
+  min-height: 70vh;
   h1 {
     margin: 0;
   }
