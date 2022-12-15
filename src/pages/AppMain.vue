@@ -3,7 +3,6 @@
     <h1 class="mb-40">Все кроссовки</h1>
     <search-item />
   </div>
-  <p>{{ $store._actions }}</p>
   <div class="products" v-if="!isLoading">
     <app-list :items="sortArr"></app-list>
   </div>
@@ -18,43 +17,29 @@ import searchItem from "@/components/SearchItem.vue";
 import isLoader from "@/components/isLoader.vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 
-// import axios from "axios";
-
 export default {
   data() {
-    return {};
+    return {
+      data: [],
+    };
   },
   methods: {
     ...mapActions({
       fetchSneakers: "sneakers/fetchSneakers",
     }),
-
-    // async fetchSneakers() {
-    //   try {
-    //     this.isLoading = true;
-    //     const res = await axios.get(
-    //       "https://6391c7e9b750c8d178cd1a49.mockapi.io/items"
-    //     );
-    //     this.sneakers = res.data;
-    //   } catch (e) {
-    //     alert("Ошибка ", e);
-    //   } finally {
-    //     this.isLoading = false;
-    //   }
-    // },
   },
   computed: {
     ...mapState({
       isLoading: (state) => state.sneakers.isLoading,
-      sneakers: (state) => state.sneakers.sneakers,
+      data: (state) => state.sneakers.data,
       valueQuery: (state) => state.sneakers.valueQuery,
     }),
     ...mapGetters({
-      sortArr: "modules/sneakers/sortArr",
+      sortArr: "sneakers/sortArr",
     }),
-    fetchSneakers() {
-      return this.$store.actions.fetchSneakers;
-    },
+  },
+  mounted() {
+    this.fetchSneakers();
   },
   created() {},
   components: {

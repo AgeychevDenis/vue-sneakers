@@ -4,7 +4,8 @@ import sneakers from './modules/sneakers';
 export const store = createStore({
    state() {
       return {
-         show: false
+         show: false,
+         likes: 0
       }
    },
    modules: {

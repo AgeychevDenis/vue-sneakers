@@ -1,14 +1,22 @@
 import axios from "axios";
 
 export default {
-   state() {
-      return {
-         isLoading: false,
-         sneakers: [],
-         valueQuery: ''
-      }
+   state: () => ({
+      isLoading: false,
+      data: [],
+      valueQuery: ''
+   }),
+   mutations: {
+      setData(state, data) {
+         state.data = data;
+      },
+      setLoading(state, bool) {
+         state.isLoading = bool;
+      },
+      setValueQuery(state, valueQuery) {
+         state.valueQuery = valueQuery
+      },
    },
-
    actions: {
       async fetchSneakers({ commit }) {
          try {
@@ -17,7 +25,7 @@ export default {
                "https://6391c7e9b750c8d178cd1a49.mockapi.io/items"
             );
 
-            commit('setSneakers', res.data)
+            commit('setData', res.data)
          } catch (e) {
             console.log(e);
          } finally {
@@ -25,20 +33,12 @@ export default {
          }
       },
    },
-   mutations: {
-      setSneakers(state, sneakers) {
-         state.sneakers = sneakers;
-      },
-      setLoading(state, bool) {
-         state.isLoading = bool;
-      }
-   },
    getters: {
       sortArr(state) {
-         return [...state.sneakers].filter((item) =>
+         return [...state.data].filter((item) =>
             item.title.toLowerCase().includes(state.valueQuery)
          );
       },
    },
-   namespaped: true
+   namespaced: true
 }

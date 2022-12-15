@@ -14,20 +14,30 @@
         stroke-linecap="round"
       />
     </svg>
-    <input v-model="valueQuery" placeholder="Поиск..." />
+    <input
+      v-model="valueQuery"
+      @update:model-value="setValueQuery"
+      placeholder="Поиск..."
+    />
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
+
 export default {
   data() {
     return {};
   },
+  methods: {
+    ...mapMutations({
+      setValueQuery: "sneakers/setValueQuery",
+    }),
+  },
   computed: {
-    searchItem() {
-      console.log(this.$store.getters.searchItem);
-      return this.$store.getters.searchItem;
-    },
+    ...mapState({
+      valueQuery: (state) => state.sneakers.valueQuery,
+    }),
   },
 };
 </script>
