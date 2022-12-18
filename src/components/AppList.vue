@@ -36,6 +36,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isAdded: false,
+    };
+  },
   props: {
     items: {
       type: Array,

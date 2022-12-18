@@ -31,8 +31,44 @@
         </svg>
       </h2>
 
+      <div class="items flex" v-if="cart.length > 0">
+        <div class="cartItem mb-20" v-for="item in cart" :key="item.id">
+          <img :src="item.imageUrl" class="cartItemImg" />
+          <div>
+            <p class="cartItemTitle mt-5 mb-5">
+              {{ textCrop(item.title) }}
+            </p>
+            <b>{{ priceRu(item.price) }} руб.</b>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            viewBox="0 0 32 32"
+            fill="none"
+            class="icon-close"
+            @click="removeToCart(item)"
+          >
+            <rect
+              x="0.5"
+              y="0.5"
+              width="31"
+              height="31"
+              rx="7.5"
+              fill="white"
+              stroke="#DBDBDB"
+            />
+            <path
+              d="M20.0799 18.6155L17.6311 16.1667L20.0798 13.718C21.0241 12.7738 19.5596 11.3093 18.6154 12.2536L16.1667 14.7023L13.7179 12.2535C12.7738 11.3095 11.3095 12.7738 12.2535 13.7179L14.7023 16.1667L12.2536 18.6154C11.3093 19.5596 12.7738 21.0241 13.718 20.0798L16.1667 17.6311L18.6155 20.0799C19.5597 21.0241 21.0241 19.5597 20.0799 18.6155Z"
+              fill="#B5B5B5"
+            />
+          </svg>
+        </div>
+      </div>
+
       <div
         class="cartEmpty d-flex align-center justify-center flex-column flex"
+        v-else
       >
         <img
           height="100"
@@ -52,6 +88,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {};
@@ -60,6 +98,20 @@ export default {
     closeCart() {
       this.$store.state.show = false;
     },
+    priceRu(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+    textCrop(text) {
+      return `${text.substring(0, 25)}...`;
+    },
+    removeToCart(item) {
+      this.$store.dispatch("sneakers/removeProductToCart", item);
+    },
+  },
+  computed: {
+    ...mapState({
+      cart: (state) => state.sneakers.cart,
+    }),
   },
 };
 </script>
@@ -89,7 +141,7 @@ export default {
   flex-direction: column;
   box-sizing: border-box;
   position: absolute;
-  width: 420px;
+  width: 460px;
   height: 100%;
   right: 0;
   background: #ffffff;
@@ -121,5 +173,20 @@ export default {
 
 .greenButton {
   margin: 20px auto 0;
+}
+
+.cartItem {
+  display: grid;
+  grid-template-columns: 110px auto 25px;
+  border: 1px solid #f3f3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.cartItemImg {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
 }
 </style>

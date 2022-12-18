@@ -18,11 +18,6 @@ import isLoader from "@/components/isLoader.vue";
 import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
-  data() {
-    return {
-      data: [],
-    };
-  },
   methods: {
     ...mapActions({
       fetchSneakers: "sneakers/fetchSneakers",

@@ -15,12 +15,14 @@ export default {
          state.isLoading = bool;
       },
       setValueQuery(state, valueQuery) {
-         state.valueQuery = valueQuery
+         state.valueQuery = valueQuery;
       },
       addToCart(state, cart) {
-         state.cart.push(cart)
+         state.cart.push(cart);
+      },
+      removeItemCart(state, item) {
+         state.cart.filter(obj => obj.id !== item.id);
       }
-
    },
    actions: {
       async fetchSneakers({ commit }) {
@@ -38,13 +40,16 @@ export default {
          }
       },
       addProductToCart({ commit }, cart) {
-         commit('addToCart', cart)
+         commit('addToCart', cart);
+      },
+      removeProductToCart({ commit }, item) {
+         commit('removeItemCart', item)
       }
    },
    getters: {
       sortArr(state) {
          return [...state.data].filter((item) =>
-            item.title.toLowerCase().includes(state.valueQuery)
+            item.title.toLowerCase().includes(state.valueQuery.toLowerCase())
          );
       },
    },
