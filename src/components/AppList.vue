@@ -17,7 +17,7 @@
         <span>Цена:</span>
         <b>{{ priceRu(item.price) }} руб.</b>
       </div>
-      <button class="button">
+      <button class="button" @click="addToCart(item)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="12"
@@ -45,6 +45,9 @@ export default {
   methods: {
     priceRu(price) {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+    addToCart(item) {
+      this.$store.dispatch("sneakers/addProductToCart", item);
     },
   },
 };

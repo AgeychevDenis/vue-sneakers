@@ -4,7 +4,8 @@ export default {
    state: () => ({
       isLoading: false,
       data: [],
-      valueQuery: ''
+      valueQuery: '',
+      cart: []
    }),
    mutations: {
       setData(state, data) {
@@ -16,6 +17,10 @@ export default {
       setValueQuery(state, valueQuery) {
          state.valueQuery = valueQuery
       },
+      addToCart(state, cart) {
+         state.cart.push(cart)
+      }
+
    },
    actions: {
       async fetchSneakers({ commit }) {
@@ -32,6 +37,9 @@ export default {
             commit('setLoading', false);
          }
       },
+      addProductToCart({ commit }, cart) {
+         commit('addToCart', cart)
+      }
    },
    getters: {
       sortArr(state) {
