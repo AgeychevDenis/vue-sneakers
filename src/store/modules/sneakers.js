@@ -5,7 +5,8 @@ export default {
       isLoading: false,
       data: [],
       valueQuery: '',
-      cart: []
+      cart: [],
+      sumPrice: 0
    }),
    mutations: {
       setData(state, data) {
@@ -19,6 +20,7 @@ export default {
       },
       addToCart(state, cart) {
          state.cart.push(cart);
+         state.sumPrice += cart.price;
       },
       removeItemCart(state, item) {
          state.cart.filter(obj => obj.id !== item.id);

@@ -149,6 +149,11 @@ export default {
   padding: 30px;
   transform: translate(100%);
   transition: transform 0.3s ease-in-out;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .overlayVisible .drawer {
