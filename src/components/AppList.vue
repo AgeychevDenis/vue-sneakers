@@ -1,7 +1,12 @@
 <template>
   <div class="card" v-for="item in items" :key="item.id">
     <div class="favorite">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        @click="addToFavorite(item)"
+      >
         <g fill="none" fill-rule="evenodd">
           <path
             stroke="#cfcfcf"
@@ -53,6 +58,9 @@ export default {
     },
     addToCart(item) {
       this.$store.dispatch("sneakers/addProductToCart", item);
+    },
+    addToFavorite(item) {
+      this.$store.dispatch("sneakers/addProductToFavorite", item);
     },
   },
 };

@@ -1,15 +1,33 @@
 <template>
   <h2>Мои закладки</h2>
-  <div class="no-bookmarks">
-    <img src="@/assets/img/smile-no-bookmarks.png" alt="no-bookmarks" />
-    <h4>Закладок нет :(</h4>
-    <p>Вы ничего не добавляли в закладки</p>
+  <div class="products" v-if="favorite.length > 0">
+    <app-list :items="favorite"></app-list>
   </div>
-  <base-button to="/"></base-button>
+  <div v-else>
+    <div class="no-bookmarks">
+      <img src="@/assets/img/smile-no-bookmarks.png" alt="no-bookmarks" />
+      <h4>Закладок нет :(</h4>
+      <p>Вы ничего не добавляли в закладки</p>
+    </div>
+
+    <base-button to="/"></base-button>
+  </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+import AppList from "@/components/AppList.vue";
+
+export default {
+  computed: {
+    ...mapState({
+      favorite: (state) => state.sneakers.favorite,
+    }),
+  },
+  components: {
+    AppList,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -34,5 +52,13 @@ export default {};
     margin: 0;
     opacity: 0.4;
   }
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }
 </style>

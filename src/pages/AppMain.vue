@@ -26,8 +26,6 @@ export default {
   computed: {
     ...mapState({
       isLoading: (state) => state.sneakers.isLoading,
-      data: (state) => state.sneakers.data,
-      valueQuery: (state) => state.sneakers.valueQuery,
     }),
     ...mapGetters({
       sortArr: "sneakers/sortArr",
