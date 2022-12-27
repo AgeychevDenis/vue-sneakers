@@ -6,7 +6,8 @@ export default {
       data: [],
       valueQuery: '',
       cart: [],
-      sumPrice: 0
+      totalPrice: 0,
+      favorite: []
    }),
    mutations: {
       setData(state, data) {
@@ -20,11 +21,21 @@ export default {
       },
       addToCart(state, cart) {
          state.cart.push(cart);
-         state.sumPrice += cart.price;
+         state.totalPrice += cart.price;
+      },
+      addToFavorite(state, favorite) {
+         state.favorite.push(favorite)
       },
       removeItemCart(state, item) {
-         state.cart.filter(obj => obj.id !== item.id);
-      }
+         let index = state.cart.indexOf(item);
+
+         if (index > -1) {
+            let product = state.cart[index];
+            state.totalPrice -= product.price;
+         }
+
+         state.cart.splice(index, 1);
+      },
    },
    actions: {
       async fetchSneakers({ commit }) {
@@ -43,6 +54,9 @@ export default {
       },
       addProductToCart({ commit }, cart) {
          commit('addToCart', cart);
+      },
+      addProductToFavorite({ commit }, favorite) {
+         commit('addToFavorite', favorite);
       },
       removeProductToCart({ commit }, item) {
          commit('removeItemCart', item)

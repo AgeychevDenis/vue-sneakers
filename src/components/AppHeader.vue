@@ -42,7 +42,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span>1205 руб.</span>
+        <span>{{ priceRu($store.state.sneakers.totalPrice) }} руб.</span>
       </li>
 
       <li class="mr-30">
@@ -92,6 +92,9 @@ export default {
   methods: {
     showCart() {
       this.$store.state.show = true;
+    },
+    priceRu(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     },
   },
 };
