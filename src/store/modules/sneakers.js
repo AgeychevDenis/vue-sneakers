@@ -19,12 +19,26 @@ export default {
       setValueQuery(state, valueQuery) {
          state.valueQuery = valueQuery;
       },
-      addToCart(state, cart) {
-         state.cart.push(cart);
-         state.totalPrice += cart.price;
+      addToCart(state, item) {
+         const find = state.cart.find(obj => obj.id === item.id);
+
+         if (find) {
+            state.cart = state.cart.filter(obj => obj.id !== item.id);
+            state.totalPrice -= item.price;
+         } else {
+            state.cart.push(item);
+            state.totalPrice += item.price;
+         }
       },
-      addToFavorite(state, favorite) {
-         state.favorite.push(favorite)
+      addToFavorite(state, item) {
+         const find = state.favorite.find(obj => obj.id === item.id);
+
+         if (find) {
+            state.favorite = state.favorite.filter(obj => obj.id !== item.id)
+         } else {
+            state.favorite.push(item)
+            state.favorite.filter(obj => obj.isFavorite = true)
+         }
       },
       removeItemCart(state, item) {
          let index = state.cart.indexOf(item);

@@ -6,6 +6,21 @@
         width="24"
         height="24"
         @click="addToFavorite(item)"
+        v-if="this.favorite.some((obj) => obj.id === item.id)"
+      >
+        <g fill="none" fill-rule="evenodd">
+          <path
+            fill="#ff8585"
+            d="M12 7.5h.5c0-2.026 2.194-4 4.44-4 3.024 0 4.56 2.412 4.56 5.262C21.5 15.894 12 20.5 12 20.5S2.5 15.894 2.5 8.762C2.5 5.912 4.036 3.5 7.06 3.5c2.246 0 4.44 1.974 4.44 4h.5z"
+          />
+        </g>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        @click="addToFavorite(item)"
+        v-else
       >
         <g fill="none" fill-rule="evenodd">
           <path
@@ -40,10 +55,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
-      isAdded: false,
+      activeIndex: false,
     };
   },
   props: {
@@ -62,6 +79,14 @@ export default {
     addToFavorite(item) {
       this.$store.dispatch("sneakers/addProductToFavorite", item);
     },
+    isFavorite(item) {
+      this.favorite.some((obj) => obj.id === item.id);
+    },
+  },
+  computed: {
+    ...mapState({
+      favorite: (state) => state.sneakers.favorite,
+    }),
   },
 };
 </script>
