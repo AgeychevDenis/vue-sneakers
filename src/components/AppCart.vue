@@ -80,7 +80,7 @@
               <b>{{ $store.state.sneakers.taxPrice }} руб.</b>
             </li>
           </ul>
-          <base-button to="" class="greenButton" @click="addToTotalOrder">
+          <base-button to="" class="greenButton" @click="makingAnOrder">
             Оформить заказ
           </base-button>
         </div>
@@ -88,31 +88,7 @@
 
       <div
         class="cartEmpty d-flex align-center justify-center flex-column flex"
-        v-else
-      >
-        <img
-          height="100"
-          width="100"
-          class="mb-20"
-          src="../assets/img/empty-cart.png"
-          alt="Empty"
-        />
-        <h2>Корзина пустая</h2>
-        <p class="opacity-6">
-          Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-        </p>
-        <base-button to="" @click="closeCart">Вернуться назад</base-button>
-      </div>
-
-      <div
-        class="
-          cartEmpty
-          d-flex
-          align-center
-          justify-center
-          flex-column flex
-          off
-        "
+        v-else-if="totalOrder.length > 0"
       >
         <img
           height="100"
@@ -124,6 +100,24 @@
         <h2>Заказ оформлен!</h2>
         <p class="opacity-6 text-center">
           Ваш заказ #18 скоро будет передан курьерской доставке
+        </p>
+        <base-button to="" @click="closeCart">Вернуться назад</base-button>
+      </div>
+
+      <div
+        class="cartEmpty d-flex align-center justify-center flex-column flex"
+        v-else-if="cart.length === 0"
+      >
+        <img
+          height="100"
+          width="100"
+          class="mb-20"
+          src="../assets/img/empty-cart.png"
+          alt="Empty"
+        />
+        <h2>Корзина пустая</h2>
+        <p class="opacity-6 text-center">
+          Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
         </p>
         <base-button to="" @click="closeCart">Вернуться назад</base-button>
       </div>
@@ -154,10 +148,18 @@ export default {
     addToTotalOrder() {
       this.$store.dispatch("sneakers/addProductToOrder");
     },
+    removeAllCart() {
+      this.$store.dispatch("sneakers/removeAllCart");
+    },
+    makingAnOrder() {
+      this.addToTotalOrder();
+      this.removeAllCart();
+    },
   },
   computed: {
     ...mapState({
       cart: (state) => state.sneakers.cart,
+      totalOrder: (state) => state.sneakers.totalOrder,
     }),
   },
 };
@@ -259,12 +261,5 @@ export default {
   position: relative;
   top: -4px;
   margin: 0 7px;
-}
-
-.off {
-  display: none;
-  &.on {
-    display: flex;
-  }
 }
 </style>

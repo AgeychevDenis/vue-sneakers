@@ -89,6 +89,9 @@ export default {
       },
       addProductToOrder({ commit }) {
          commit('addToOrder')
+      },
+      removeAllCart({ commit }, item) {
+         commit('removeAllCart', item)
       }
    },
    getters: {
