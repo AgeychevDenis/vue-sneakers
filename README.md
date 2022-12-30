@@ -1,24 +1,48 @@
-# vue-sneakers
+# Vue Sneakers :shoe:
 
-## Project setup
-```
-npm install
-```
+### :zap: [Сайт проект "Vue Sneakers - мини интернет-магазин кроссовок"](https://vue-sneakers-eight.vercel.app/)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### Реализация на Vue/VueX 
 
-### Compiles and minifies for production
+## *Запуск проекта* ▶️
+
+Для запуска проекта вам необходимо войти в папку - :file_folder: vue-sneakers
+ и набрать в терминале:
+
 ```
-npm run build
+npm i
 ```
 
-### Lints and fixes files
+или
+
 ```
-npm run lint
+yarn i
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+В папке - :open_file_folder: набрать команду:
+
+```
+npm start
+```
+
+или
+
+```
+yarn start
+```
+### Технологии проекта ###
+
+![Vue](https://img.shields.io/badge/-Vue-090909?style=for-the-badge&logo=vue)
+![VueX](https://img.shields.io/badge/-VueX-090909?style=for-the-badge&logo=vue)
+![JavaScript](https://img.shields.io/badge/-JavaScript-090909?style=for-the-badge&logo=javascript)
+![npm](https://img.shields.io/badge/-npm-090909?style=for-the-badge&logo=npm)
+![git](https://img.shields.io/badge/-git-090909?style=for-the-badge&logo=git)
+![html5](https://img.shields.io/badge/-html5-090909?style=for-the-badge&logo=html5)
+![css](https://img.shields.io/badge/-css-090909?style=for-the-badge&logo=css3)
+
+### Разработал :man:
+
+[AgeychevDenis](https://github.com/AgeychevDenis)
+
+
+
