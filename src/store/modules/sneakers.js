@@ -55,7 +55,7 @@ export default {
          state.cart.splice(index, 1);
       },
       addToOrder(state) {
-         state.totalOrder = [...state.cart];
+         state.totalOrder = [...state.cart, ...state.totalOrder];
       },
       removeAllCart(state) {
          state.cart.splice(0, state.cart.length);

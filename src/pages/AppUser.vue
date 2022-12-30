@@ -5,7 +5,7 @@
   </div>
 
   <div class="no-bookmarks" v-else>
-    <img src="@/assets/img/smile-no-bookmarks.png" alt="no-bookmarks" />
+    <img src="@/assets/img/no-orders.png" alt="no-bookmarks" />
     <h4>У вас нет заказов</h4>
     <p>
       Вы нищеброд? <br />
