@@ -37,7 +37,15 @@
         <span>Цена:</span>
         <b>{{ priceRu(item.price) }} руб.</b>
       </div>
-      <button class="button" @click="addToCart(item)">
+      <button
+        class="button"
+        @click="addToCart(item)"
+        v-if="this.cart.some((obj) => obj.id === item.id)"
+      >
+        <img src="@/assets/img/iconAdded.svg" alt="Added" />
+      </button>
+
+      <button class="button" @click="addToCart(item)" v-else>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="12"
@@ -86,6 +94,7 @@ export default {
   computed: {
     ...mapState({
       favorite: (state) => state.sneakers.favorite,
+      cart: (state) => state.sneakers.cart,
     }),
   },
 };
@@ -130,6 +139,7 @@ export default {
   width: 32px;
   cursor: pointer;
   transition: all 0.3s;
+  position: relative;
 
   &:hover {
     background-color: #3cc755;
@@ -138,6 +148,11 @@ export default {
     svg {
       fill: #ffffff;
     }
+  }
+  & img {
+    position: absolute;
+    top: -1px;
+    left: -1px;
   }
 }
 

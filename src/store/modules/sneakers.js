@@ -7,7 +7,9 @@ export default {
       valueQuery: '',
       cart: [],
       totalPrice: 0,
-      favorite: []
+      taxPrice: 0,
+      favorite: [],
+      totalOrder: []
    }),
    mutations: {
       setData(state, data) {
@@ -28,6 +30,7 @@ export default {
          } else {
             state.cart.push(item);
             state.totalPrice += item.price;
+            state.taxPrice = (state.totalPrice / 100 * 5).toFixed(1);
          }
       },
       addToFavorite(state, item) {
@@ -46,10 +49,19 @@ export default {
          if (index > -1) {
             let product = state.cart[index];
             state.totalPrice -= product.price;
+            state.taxPrice = (state.taxPrice - item.price / 100 * 5).toFixed(1);
          }
 
          state.cart.splice(index, 1);
       },
+      addToOrder(state) {
+         state.totalOrder = [...state.cart];
+      },
+      removeAllCart(state) {
+         state.cart.splice(0, state.cart.length);
+         state.totalPrice = 0;
+         state.taxPrice = 0;
+      }
    },
    actions: {
       async fetchSneakers({ commit }) {
@@ -74,6 +86,9 @@ export default {
       },
       removeProductToCart({ commit }, item) {
          commit('removeItemCart', item)
+      },
+      addProductToOrder({ commit }) {
+         commit('addToOrder')
       }
    },
    getters: {

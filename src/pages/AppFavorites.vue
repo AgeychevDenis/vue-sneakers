@@ -10,7 +10,7 @@
       <p>Вы ничего не добавляли в закладки</p>
     </div>
 
-    <base-button to="/"></base-button>
+    <base-button to="/">Вернуться назад</base-button>
   </div>
 </template>
 
@@ -52,13 +52,5 @@ export default {
     margin: 0;
     opacity: 0.4;
   }
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
 }
 </style>

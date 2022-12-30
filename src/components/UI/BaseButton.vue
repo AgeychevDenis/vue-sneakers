@@ -1,6 +1,5 @@
 <template>
   <router-link class="greenButton">
-    <slot></slot>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -23,7 +22,7 @@
         stroke-linejoin="round"
       ></path>
     </svg>
-    Вернуться назад
+    <slot></slot>
   </router-link>
 </template>
 
