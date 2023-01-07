@@ -4,6 +4,11 @@
 
 #### Реализация на Vue/VueX 
 
+<br/>
+
+![se3cd](https://user-images.githubusercontent.com/83320431/211144894-51e07b64-19de-4d74-97f7-c37217e20f88.gif)
+
+
 ## *Запуск проекта* ▶️
 
 Для запуска проекта вам необходимо войти в папку - :file_folder: vue-sneakers
