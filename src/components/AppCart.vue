@@ -72,12 +72,12 @@
             <li>
               <span>Итого:</span>
               <div></div>
-              <b>{{ $store.state.sneakers.totalPrice }} руб.</b>
+              <b>{{ priceRu($store.state.sneakers.totalPrice) }} руб.</b>
             </li>
             <li>
               <span>Налог 5%:</span>
               <div></div>
-              <b>{{ $store.state.sneakers.taxPrice }} руб.</b>
+              <b>{{ priceRu($store.state.sneakers.taxPrice) }} руб.</b>
             </li>
           </ul>
           <base-button to="" class="greenButton" @click="makingAnOrder">
@@ -127,6 +127,7 @@
 
 <script>
 import { mapState } from "vuex";
+import priceRu from "../helpers";
 
 export default {
   data() {
@@ -136,9 +137,7 @@ export default {
     closeCart() {
       this.$store.state.show = false;
     },
-    priceRu(price) {
-      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+    priceRu,
     textCrop(text) {
       return `${text.substring(0, 25)}...`;
     },

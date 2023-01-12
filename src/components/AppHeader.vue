@@ -85,6 +85,8 @@
 </template>
 
 <script>
+import priceRu from "../helpers";
+
 export default {
   data() {
     return {};
@@ -93,9 +95,7 @@ export default {
     showCart() {
       this.$store.state.show = true;
     },
-    priceRu(price) {
-      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    },
+    priceRu,
   },
 };
 </script>
